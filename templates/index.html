@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{{ title }}</title>
-    </head>
-    <body>
-        <h1>ようこそ、{{userName}}</h1>
-    </body>
+<head>
+<title>{{ title }}</title>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+    $('#hello').on("click", function() {
+        $.ajax({
+            url: "http://127.0.0.1:5000/hello",
+            type:'POST',
+            dataType: 'text',
+            data : {"name": "Kentei"},
+            timeout:10000,
+        }).done(function(data) {
+            alert(data);
+        }).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("error");
+        })
+    });
+});
+</script>
+<h1>ようこそ、{{userName}}</h1>
+<input type="button" value="Hello Button" id="hello"/>
+</body>
 </html>
